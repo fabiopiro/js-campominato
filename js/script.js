@@ -22,3 +22,46 @@ Proviamo prima con pochi numeri, inserire 84 numeri ogni volta potrebbe essere u
 Le validazioni e i controlli possiamo farli anche in un secondo momento.
 Ricordatevi che se non sappiamo quante volte dobbiamo fare una cosa ci serve… :linguaccia:
 */
+
+// SCRIPT
+var bombArray = [];
+var arrayUserSelection = [];
+
+
+// Numeri "Bomba"
+while (bombArray.length < 16) {
+
+    var bombNumber = randomNumber (1,100);
+    
+    if (isInArray (bombArray, bombNumber) == false) {
+        bombArray.push(bombNumber);
+    }
+
+}
+
+
+// FUNCTIONS
+
+// funzione random number
+function randomNumber (min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+// funzione "è nell'array"?
+function isInArray (array, element) {
+
+    for (i = 0; i < array.length ; i++) {
+        if (array[i] == element) {
+            return true
+        }
+
+    }
+    return false
+
+}
+
+// var arrayProva = [1,2,3,4,5];
+// console.log(arrayProva);
+
+// var prova = isInArray (arrayProva, 2)
+// console.log(prova);
