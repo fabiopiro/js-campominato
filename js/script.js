@@ -25,11 +25,13 @@ Ricordatevi che se non sappiamo quante volte dobbiamo fare una cosa ci serve… 
 
 // SCRIPT
 var bombArray = [];
-var arrayUserSelection = [];
+var attemptArray = [];
 
+var bombMax = 16;
+var attemptMax = 100 - bombMax;
 
 // Numeri "Bomba"
-while (bombArray.length < 16) {
+while (bombArray.length < bombMax) {
 
     var bombNumber = randomNumber (1,100);
     
@@ -38,6 +40,33 @@ while (bombArray.length < 16) {
     }
 
 }
+console.log("NUMERI BOMBA",bombArray);
+
+// Gioco
+var gameOver = false;
+
+while (attemptArray.length < attemptMax && gameOver == false) {
+
+    var attemptNumber;
+
+    do {
+        attemptNumber = parseInt(prompt("Inserisci un numero da 1 a 100"));
+    } while (isNaN(attemptNumber) || attemptNumber < 1 || attemptNumber > 100 || isInArray(attemptArray, attemptNumber));
+
+    if (isInArray(bombArray, attemptNumber) == false) {
+        attemptArray.push(attemptNumber);
+    } else if (isInArray(bombArray, attemptNumber) == true) {
+        gameOver = true;
+        alert ("HAI PERSO\nHai totalizzato " + attemptArray.length + " punti!");
+    }
+    console.log("NUMERI SELEZIONATI", attemptNumber);
+}
+console.log(attemptArray);
+
+if (attemptArray.length == attemptMax) {
+    alert ("HAI VINTO\nHai totalizzato " + attemptArray.length + " punti!")
+}
+
 
 
 // FUNCTIONS
@@ -50,18 +79,11 @@ function randomNumber (min, max) {
 // funzione "è nell'array"?
 function isInArray (array, element) {
 
-    for (i = 0; i < array.length ; i++) {
+    for (var i = 0; i < array.length ; i++) {
+       
         if (array[i] == element) {
-            return true
+            return true;
         }
-
     }
-    return false
-
+    return false;
 }
-
-// var arrayProva = [1,2,3,4,5];
-// console.log(arrayProva);
-
-// var prova = isInArray (arrayProva, 2)
-// console.log(prova);
