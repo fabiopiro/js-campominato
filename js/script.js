@@ -27,13 +27,28 @@ Ricordatevi che se non sappiamo quante volte dobbiamo fare una cosa ci serve… 
 var bombArray = [];
 var attemptArray = [];
 
+// BONUS
+var difficulty = prompt("Seleziona una difficoltà (0 - 1 - 2)")
+
+// Fattori di difficoltà
+if (difficulty == 0) {
+    var difficultyNumber = 100;
+    console.log("Difficoltà - Facile");
+} else if (difficulty == 1) {
+    var difficultyNumber = 80;
+    console.log("Difficoltà - Media");
+} else {
+    var difficultyNumber = 50;
+    console.log("Difficoltà - Difficile");
+}
+
 var bombMax = 16;
-var attemptMax = 100 - bombMax;
+var attemptMax = difficultyNumber - bombMax;
 
 // Numeri "Bomba"
 while (bombArray.length < bombMax) {
 
-    var bombNumber = randomNumber (1,100);
+    var bombNumber = randomNumber (1,difficultyNumber);
     
     if (isInArray (bombArray, bombNumber) == false) {
         bombArray.push(bombNumber);
@@ -50,8 +65,8 @@ while (attemptArray.length < attemptMax && gameOver == false) {
     var attemptNumber;
 
     do {
-        attemptNumber = parseInt(prompt("Inserisci un numero da 1 a 100"));
-    } while (isNaN(attemptNumber) || attemptNumber < 1 || attemptNumber > 100 || isInArray(attemptArray, attemptNumber));
+        attemptNumber = parseInt(prompt("Inserisci un numero da 1 a " + difficultyNumber));
+    } while (isNaN(attemptNumber) || attemptNumber < 1 || attemptNumber > difficultyNumber || isInArray(attemptArray, attemptNumber));
 
     if (isInArray(bombArray, attemptNumber) == false) {
         attemptArray.push(attemptNumber);
